@@ -18,9 +18,9 @@ import edu.princeton.cs.algs4.StdRandom;
  * bonus: use only one RandomizedQueue object of maximum size at most {@code k}
  * solution: powered by Knuth shuffle, the algorithm is as follows:
  * read the strings one by one from the standard input, and enqueue the first {@code k} items, then
- * for each item, accept it with probability {@code k/cnt}, where{@code cnt} is the number of items read so far.
+ * for each item, accept it with probability {@code k / (cnt + 1)}, where{@code cnt} is the number of items read so far.
  * if accepted, dequeue a random item and enqueue the new item.
- * note that the probability of each item remaining in the queue is exactly {@code k/n}.
+ * note that the probability of each item remaining in the queue is exactly {@code k / n}.
  * 
  * more details can be found in the project source:
  * https://coursera.cs.princeton.edu/algs4/assignments/queues/specification.php
@@ -38,7 +38,7 @@ public class Permutation {
                 // fill the queue with the first k items
                 q.enqueue(s);
             } else if (StdRandom.uniformInt(cnt + 1) < k) {
-                // accept the new item with probability k / cnt
+                // accept the new item with probability k / (cnt + 1)
                 q.dequeue();
                 q.enqueue(s);
             }
